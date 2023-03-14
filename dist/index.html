@@ -9,7 +9,7 @@
 <body>
   <!-- 注意  一定不要再里面注释html代码  会导致编译有问题 -->
   <div id="app" class="999" style="color: rgb(51, 214, 255);font-size:18px">
-    <p style="color: rgb(51, 255, 85);">{{name}} 今年 {{age}} 岁了， 喜欢打篮球</p>
+    <p style="color: rgb(51, 255, 85);">{{name}} 今年 {{age}} 岁了， 喜欢打篮球 {{arr}}</p>
   </div>
 
   <script src="./vue.js"></script>
@@ -28,17 +28,19 @@
         }
       }
     })
-    vm.name = 666;
+    vm.name = 9966;
     vm.$mount('#app')
 
     setTimeout(()=>{
+      
       vm.name = {
         baseBall:'棒球',
         baskBall:"篮球"
       }
       
       vm.arr.push(10)
-      vm.arr[3].push(20)
+      console.log('vm.arr',vm.arr);
+      // vm.arr[3].push(20)
     },1000)
   </script>
 </body>

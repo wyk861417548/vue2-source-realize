@@ -48,7 +48,7 @@ function gen(node){
     return codegen(node)
   }else{// 如果是文本类型
     let text = node.text;
-    console.log('text',text);
+    // console.log('text',text);
 
     // 如果没有匹配到 {{ }}  注意：/xxx/g.test() /xxx/g.exec(text))  匹配成功后的lastIndex 会变化
     if(!defaultTagRE.test(text)){
@@ -94,7 +94,7 @@ export function compileToFunction(template){
 
   // 2. 生成render方法 将ast语法树转换成render函数 (模板引擎的实现原理 就是 with + new Function)
   let code = codegen(ast)
-  console.log('code',code);
+  // console.log('code',code);
 
   // c('div',{id:"app",class:"999",style:{"color":" #f33","font-size":"18px"}},_c('div',{style:{"color":" #ff3"}},_v(_s(name)+" 你 "+_s(age)+"  好111")),_c('span',null,_v("hello")))
   // 因为with 当this传入vm的时候，_s(xxx)中的变量会自动去vm上拿取

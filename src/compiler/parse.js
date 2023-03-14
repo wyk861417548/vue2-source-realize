@@ -107,7 +107,7 @@ export function parseHTML(html){
   while(html){
     // 为0代表是一个开始标签或者结束标签
     let textEnd = html.indexOf('<');
-    console.log('textEnd',textEnd);
+    // console.log('textEnd',textEnd);
     // 开始标签或者结束标签
     if(textEnd == 0){
       // 当匹配到开始标签 {tagName: "div",attrs[{name: 'id', value: 'app'},...]}

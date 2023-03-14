@@ -5,6 +5,7 @@
  * 3. 将ast语法树转换成render函数
  * 4. 后续每次数据更新可以只执行render函数（无需再次执行ast转化过程）
 */
+import Watcher from "./Observer/watcher";
 import { createElementVNode,createTextVNode} from "./vdom/index";
 
 // 创建真实DOM元素
@@ -86,7 +87,15 @@ export function initLifeCycle(Vue){
 
 export function mountComponent(vm,el){
   vm.$el = el;
-  // 1.调用render方法产生虚拟节点，虚拟DOM
+  // 1.调用_render方法产生虚拟节点，虚拟DOM
+  // 2.调用_update将虚拟DOM转化成真实DOM，并更新
   // console.log('vm----------',vm,vm._render());
-  vm._update(vm._render()); // 更新组件渲染
+ 
+  // 
+  const updateComponents = ()=>{
+    vm._update(vm._render());
+  }
+
+  let watcher = new Watcher(vm,updateComponents,true) //true 用于标识 是一个渲染watcher
+  console.log('1111111111------------',watcher);
 }

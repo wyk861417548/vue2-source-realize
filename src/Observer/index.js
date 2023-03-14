@@ -1,4 +1,5 @@
 import { newArrayProto } from "./array";
+import Dep from "./dep";
 
 class Observer{
   constructor(data){
@@ -37,9 +38,19 @@ function defineReactive(target,key,value){
   // 如果值是对象再次进行劫持
   observe(value);
 
+  let dep = new Dep();
+  console.log(key,dep.id);
+
   Object.defineProperty(target,key,{
     get(){
       console.log('获取',key);
+      console.log('dep--------',dep);
+      console.log('Dep.target',Dep.target);
+      // Dep.target存在代表执行了视图渲染方法_update
+      if(Dep.target){
+        dep.depend()
+      }
+
       return value;
     },
     
@@ -50,6 +61,9 @@ function defineReactive(target,key,value){
       observe(newVal) // 用户给新值重新赋值对象，需要再次代理
 
       value = newVal
+
+      // 通知重新渲染页面
+      dep.notify()
     }
   })
 }
